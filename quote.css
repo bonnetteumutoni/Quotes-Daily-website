@@ -1,0 +1,20 @@
+.quotes-carp{
+    border: none;
+    border-radius: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+    width: 80%;
+    margin-left: 160px;
+    background-color: rgb(211, 236, 245);
+    box-shadow: 10px 10px grey;
+}
+body{
+    background-color: rgb(172, 207, 155);
+}
+h1{
+    text-align: center;
+    color: rgb(63, 28, 4);
+}
+.random-quote{
+    border: 1px solid;
+}
