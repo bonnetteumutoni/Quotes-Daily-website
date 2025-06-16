@@ -1,17 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link rel="Stylesheet" href="quote.css"/>
+    <link rel="Stylesheet" href="quote.css" />
     <title>Quotes</title>
 </head>
+
 <body>
-    <div id="daily-quote"></div>
-    <h1>Quotes</h1>
-    
-    <div id="quotes-container"></div>
+
+    <div class="navigation">
+        <div>
+            <img src="images/Screenshot from 2025-06-16 12-06-03.png">
+        </div>
+        <div id="search"><input type="search" id="my-search" placeholder="Search...">
+        </div>
+        <div>
+            <nav class="nav-bar">
+                <ul>
+                    <li><a href="quote.html">HOME</a></li>
+                    <li><a href="#">FAVORITES</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                    <li><a href="#">REFLECTION</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div id="back-image">
+        <h1>What matters most is how you see your self!</h1>
+        <button id="home-button">Learn more</button>
+    </div>
+    <div class="container">
+        <div class="reflection-filter">
+            <div id="daily-quote"></div>
+            <select id="mood-filter">
+                <option value="">Category</option>
+                <option value="love">Love</option>
+                <option value="wisdom">Wisdom</option>
+                <option value="attitude">Attitude</option>
+                <option value="life">Life</option>
+                <option value="life">Hard Work</option>
+                <option value="life">Bravery</option>
+            </select>
+            <div class="quotes-list"></div>
+            <h3 id="reflection-heading">Your Reflection</h3>
+            <textarea id="input-reflection" placeholder="Write your reflection here..."></textarea>
+            <button id="save-reflection" type="button">Save Reflection</button>
+        </div>
+        <div class="quotes">
+            <div id="quotes-container"></div>
+        </div>
+    </div>
     <script src="quote.js"></script>
 </body>
+
 </html>
