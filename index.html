@@ -1,59 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link rel="Stylesheet" href="style.css" />
-    <title>Quotes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QuotesHub - Quotes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Layout adjustments */
+    main {
+      display: flex;
+      max-width: 1000px;
+      margin: 2rem auto;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+
+    /* Reflection fixed on left */
+    .reflection-section {
+      position: sticky;
+      top: 2rem;
+      flex: 0 0 300px;
+      background: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      height: fit-content;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    /* Quotes area flex-grow */
+    .quotes-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Category filter */
+    .category-filter {
+      margin-bottom: 1rem;
+    }
+
+    /* Quote list grid */
+    #quotes-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    /* Quote item box */
+    .quote-item {
+      background: white;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 150px;
+    }
+
+    blockquote {
+      font-size: 1rem;
+      font-style: italic;
+      color: #34495e;
+      border-left: 4px solid #2980b9;
+      padding-left: 0.75rem;
+      margin-bottom: 0.5rem;
+      flex-grow: 1;
+    }
+
+    .quote-item p.author {
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 0.5rem;
+      text-align: right;
+    }
+
+    .tags {
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #d1e7ff;
+      color: #2980b9;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      margin-right: 0.3rem;
+      font-weight: 600;
+    }
+
+    .btn-favorite {
+      align-self: flex-end;
+      background: #2980b9;
+      border: none;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .btn-favorite:hover {
+      background: #1c5980;
+    }
+
+    /* Pagination controls */
+    .pagination {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .pagination button {
+      background: #2980b9;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .pagination button:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .pagination button:hover:not(:disabled) {
+      background: #1c5980;
+    }
+
+    /* Category buttons */
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .category-btn {
+      background: #2980b9;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: #1c5980;
+    }
+
+    /* Reflection textarea */
+    #reflection-input {
+      width: 100%;
+      min-height: 150px;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      font-family: inherit;
+      margin-bottom: 1rem;
+    }
+
+    #btn-save-reflection {
+      width: 100%;
+      padding: 0.6rem;
+    }
+
+    .message {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      main {
+        flex-direction: column;
+        max-width: 100%;
+        margin: 1rem;
+        padding: 0 1rem;
+      }
+
+      .reflection-section {
+        position: static;
+        max-height: none;
+        margin-bottom: 2rem;
+        flex: none;
+      }
+
+      #quotes-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html" class="active">Quotes</a></li>
+        <li><a href="favorites.html">Favorites</a></li>
+        <li><a href="reflections.html">Reflections</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="navigation">
-        <div>
-            <img src="images/Screenshot from 2025-06-16 12-06-03.png">
-        </div>
-        <div id="search"><input type="search" id="my-search" placeholder="Search...">
-        </div>
-        <div>
-            <nav class="nav-bar">
-                <ul>
-                    <li><a href="quote.html">HOME</a></li>
-                    <li><a href="#">FAVORITES</a></li>
-                    <li><a href="#">CONTACT</a></li>
-                    <li><a href="#">REFLECTION</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <div id="back-image">
-        <h1>What matters most is how you see your self!</h1>
-        <button id="home-button">Learn more</button>
-    </div>
-    <div class="container">
-        <div class="reflection-filter">
-            <div id="daily-quote"></div>
-            <select id="mood-filter">
-                <option value="">Category</option>
-                <option value="love">Love</option>
-                <option value="wisdom">Wisdom</option>
-                <option value="attitude">Attitude</option>
-                <option value="life">Life</option>
-                <option value="life">Hard Work</option>
-                <option value="life">Bravery</option>
-            </select>
-            <div class="quotes-list"></div>
-            <h3 id="reflection-heading">Your Reflection</h3>
-            <textarea id="input-reflection" placeholder="Write your reflection here..."></textarea>
-            <button id="save-reflection" onclick="saveReflection()">Save Reflection</button>
-        </div>
-        <div class="quotes">
-            <div id="quotes-container"></div>
-        </div>
-    </div>
-    <script src="index.js"></script>
+  <main>
+    <section class="reflection-section">
+      <h2>Save Your Reflection</h2>
+      <textarea id="reflection-input" placeholder="Write your reflection here..."></textarea>
+      <button id="btn-save-reflection">Save Reflection</button>
+      <p id="reflection-msg" class="message"></p>
+    </section>
+
+    <section class="quotes-container">
+      <section class="category-filter">
+        <h2>Filter by Category</h2>
+        <div id="category-buttons" class="category-buttons"></div>
+      </section>
+
+      <ul id="quotes-list">
+        <li>Loading quotes...</li>
+      </ul>
+
+      <div class="pagination">
+        <button id="prev-btn" disabled>Previous</button>
+        <button id="next-btn" disabled>Next</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 QuotesHub. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const categories = ['wisdom', 'love', 'life', 'inspiration', 'happiness', 'motivation'];
+    let allQuotes = [];
+    let filteredQuotes = [];
+    let currentPage = 1;
+    const quotesPerPage = 6;
+
+    // Assign random categories to each quote
+    function assignCategories(quotes) {
+      return quotes.map(quote => {
+        const count = Math.floor(Math.random() * 2) + 1;
+        const shuffled = categories.sort(() => 0.5 - Math.random());
+        quote.tags = shuffled.slice(0, count);
+        return quote;
+      });
+    }
+
+    // Render category filter buttons
+    function renderCategoryButtons() {
+      const container = document.getElementById('category-buttons');
+      container.innerHTML = '';
+
+      // All button
+      const allBtn = document.createElement('button');
+      allBtn.textContent = 'All';
+      allBtn.className = 'category-btn active';
+      allBtn.dataset.category = 'all';
+      container.appendChild(allBtn);
+
+      categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+        btn.className = 'category-btn';
+        btn.dataset.category = cat;
+        container.appendChild(btn);
+      });
+
+      container.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          container.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const category = btn.dataset.category;
+          currentPage = 1;
+          if (category === 'all') {
+            filteredQuotes = allQuotes;
+          } else {
+            filteredQuotes = allQuotes.filter(q => q.tags.includes(category));
+          }
+          renderQuotesPage();
+        });
+      });
+    }
+
+    // Render quotes for current page
+    function renderQuotesPage() {
+      const quotesList = document.getElementById('quotes-list');
+      quotesList.innerHTML = '';
+
+      if (filteredQuotes.length === 0) {
+        quotesList.innerHTML = '<li>No quotes in this category.</li>';
+        updatePaginationButtons();
+        return;
+      }
+
+      const startIdx = (currentPage - 1) * quotesPerPage;
+      const pageQuotes = filteredQuotes.slice(startIdx, startIdx + quotesPerPage);
+
+      pageQuotes.forEach((quote, index) => {
+        const li = document.createElement('li');
+        li.className = 'quote-item';
+        li.innerHTML = `
+          <blockquote>"${quote.quote}"</blockquote>
+          <p class="author">— ${quote.author}</p>
+          <p class="tags">Tags: ${quote.tags.map(t => `<span class="tag">${t}</span>`).join(' ')}</p>
+          <button class="btn-favorite" data-index="${startIdx + index}">Add to Favorites ★</button>
+        `;
+        quotesList.appendChild(li);
+      });
+
+      // Favorite buttons
+      document.querySelectorAll('.btn-favorite').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const idx = e.target.getAttribute('data-index');
+          const selectedQuote = filteredQuotes[idx];
+          let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+          if (!favorites.some(q => q.text === selectedQuote.quote)) {
+            favorites.push({ text: selectedQuote.quote, author: selectedQuote.author });
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            alert('Quote added to favorites!');
+          } else {
+            alert('Quote is already in favorites.');
+          }
+        });
+      });
+
+      updatePaginationButtons();
+    }
+
+    // Update pagination button states
+    function updatePaginationButtons() {
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage * quotesPerPage >= filteredQuotes.length;
+    }
+
+    // Pagination button handlers
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderQuotesPage();
+      }
+    });
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      if (currentPage * quotesPerPage < filteredQuotes.length) {
+        currentPage++;
+        renderQuotesPage();
+      }
+    });
+
+    // Save reflection
+    function saveReflection() {
+      const reflectionInput = document.getElementById('reflection-input');
+      const reflectionText = reflectionInput.value.trim();
+      const msg = document.getElementById('reflection-msg');
+      if (reflectionText.length === 0) {
+        msg.textContent = 'Please write something before saving.';
+        msg.style.color = 'red';
+        return;
+      }
+      let reflections = JSON.parse(localStorage.getItem('reflections')) || [];
+      reflections.push({ text: reflectionText, date: new Date().toISOString() });
+      localStorage.setItem('reflections', JSON.stringify(reflections));
+      reflectionInput.value = '';
+      msg.textContent = 'Reflection saved!';
+      msg.style.color = 'green';
+    }
+
+    // Fetch quotes and initialize
+    async function fetchQuotes() {
+      try {
+        const res = await fetch('https://dummyjson.com/quotes?limit=100');
+        const data = await res.json();
+        allQuotes = assignCategories(data.quotes);
+        filteredQuotes = allQuotes;
+        renderCategoryButtons();
+        renderQuotesPage();
+      } catch (error) {
+        document.getElementById('quotes-list').innerHTML = '<li>Failed to load quotes. Please try again later.</li>';
+        console.error('Error fetching quotes:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchQuotes();
+      document.getElementById('btn-save-reflection').addEventListener('click', saveReflection);
+    });
+  </script>
 </body>
-
 </html>

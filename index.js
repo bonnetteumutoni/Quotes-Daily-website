@@ -1,73 +1,128 @@
+//  let allQuotes = [];
+//     const categories = ['wisdom', 'love', 'life', 'inspiration', 'happiness', 'motivation'];
 
+//     // Function to assign random categories to each quote (simulate tags)
+//     function assignCategories(quotes) {
+//       return quotes.map(quote => {
+//         // Assign 1-2 random categories
+//         const count = Math.floor(Math.random() * 2) + 1;
+//         const shuffled = categories.sort(() => 0.5 - Math.random());
+//         quote.tags = shuffled.slice(0, count);
+//         return quote;
+//       });
+//     }
 
-const quotesContainer=document.getElementById("quotes-container");
-const getQuotes=async ()=>{
-    try{
-        const response=await fetch("https://dummyjson.com/quotes?limit=20",{
-            method:"GET",
-            headers:{
-                "Content-type":"application/json"
-            }
-        });
-        const result=await response.json();
-        return result;
-    }catch{
-        return new error(error.message);
-    }
-}
-const dailyQuotes=async () =>{
-    const quotes= await getQuotes();
-    console.log({quotes});
-    const quotesDaily=Array.isArray(quotes?.quotes)?quotes?.quotes:[];
-    console.log({quotesDaily});
-    quotesDaily.forEach(item => {
-        
-    const words=document.createElement("p");
-    const author=document.createElement("p");
-    const container=document.createElement("div");
-    const icon = document.createElement("button")
+//     // Render category filter buttons
+//     function renderCategoryButtons() {
+//       const container = document.getElementById('category-buttons');
+//       container.innerHTML = '';
 
-    container.appendChild(words);
-    container.appendChild(author);
-    container.appendChild(icon)
+//       // "All" button
+//       const allBtn = document.createElement('button');
+//       allBtn.textContent = 'All';
+//       allBtn.className = 'category-btn active';
+//       allBtn.dataset.category = 'all';
+//       container.appendChild(allBtn);
 
-    words.textContent=`${item.quote}`;
-    author.textContent=`Author:${item.author}`;
-    icon.textContent = "Add To Favorites"
+//       // Buttons for each category
+//       categories.forEach(cat => {
+//         const btn = document.createElement('button');
+//         btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+//         btn.className = 'category-btn';
+//         btn.dataset.category = cat;
+//         container.appendChild(btn);
+//       });
 
-    words.style.fontWeight="Bold";
-    words.style.color="rgb(43, 7, 24)";
-    words.style.paddingTop="40px";
-    words.style.paddingLeft="40px";
-    words.style.fontSize="22px"
-    
-    author.style.paddingLeft="40px";
-    author.style.paddingBottom="40px";
-    icon.style.width = "20%"
-    icon.style.color = "white"
-    icon.style.marginBottom = "20px"
+//       // Add click listeners
+//       container.querySelectorAll('button').forEach(btn => {
+//         btn.addEventListener('click', () => {
+//           // Remove active from all buttons
+//           container.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+//           btn.classList.add('active');
 
-    container.setAttribute("class","quotes-carp")
-    quotesContainer.appendChild(container);
-    });
+//           const category = btn.dataset.category;
+//           if (category === 'all') {
+//             renderQuotes(allQuotes);
+//           } else {
+//             const filtered = allQuotes.filter(q => q.tags.includes(category));
+//             renderQuotes(filtered);
+//           }
+//         });
+//       });
+//     }
 
-}
+//     // Render quotes list
+//     function renderQuotes(quotes) {
+//       const quotesList = document.getElementById('quotes-list');
+//       quotesList.innerHTML = '';
 
-dailyQuotes();
-const searchInput = document.getElementById('search');
+//       if (quotes.length === 0) {
+//         quotesList.innerHTML = '<li>No quotes in this category.</li>';
+//         return;
+//       }
 
-searchInput.addEventListener('keyup', () => {
-  const filter = searchInput.value.toLowerCase();
-  const items = quotesDaily.querySelectorAll('p');
+//       quotes.forEach((quote, index) => {
+//         const li = document.createElement('li');
+//         li.className = 'quote-item';
+//         li.innerHTML = `
+//           <blockquote>"${quote.quote}"</blockquote>
+//           <p>— ${quote.author}</p>
+//           <p class="tags">Tags: ${quote.tags.map(t => `<span class="tag">${t}</span>`).join(' ')}</p>
+//           <button class="btn-favorite" data-index="${index}">Add to Favorites ★</button>
+//         `;
+//         quotesList.appendChild(li);
+//       });
 
-  items.forEach(item => {
-    const text = item.textContent.toLowerCase();
-    if (text.includes(filter)) {
-      item.style.display = '';
-    } else {
-      item.style.display = 'none';
-    }
-  });
-});
+//       // Add event listeners for favorite buttons
+//       document.querySelectorAll('.btn-favorite').forEach(btn => {
+//         btn.addEventListener('click', e => {
+//           const idx = e.target.getAttribute('data-index');
+//           const selectedQuote = quotes[idx];
+//           let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+//           if (!favorites.some(q => q.text === selectedQuote.quote)) {
+//             favorites.push({ text: selectedQuote.quote, author: selectedQuote.author });
+//             localStorage.setItem('favorites', JSON.stringify(favorites));
+//             alert('Quote added to favorites!');
+//           } else {
+//             alert('Quote is already in favorites.');
+//           }
+//         });
+//       });
+//     }
 
+//     // Save reflection handler
+//     function saveReflection() {
+//       const reflectionInput = document.getElementById('reflection-input');
+//       const reflectionText = reflectionInput.value.trim();
+//       const msg = document.getElementById('reflection-msg');
+//       if (reflectionText.length === 0) {
+//         msg.textContent = 'Please write something before saving.';
+//         msg.style.color = 'red';
+//         return;
+//       }
+//       let reflections = JSON.parse(localStorage.getItem('reflections')) || [];
+//       reflections.push({ text: reflectionText, date: new Date().toISOString() });
+//       localStorage.setItem('reflections', JSON.stringify(reflections));
+//       reflectionInput.value = '';
+//       msg.textContent = 'Reflection saved!';
+//       msg.style.color = 'green';
+//     }
 
+//     // Fetch quotes and initialize
+//     async function fetchQuotes() {
+//       try {
+//         const res = await fetch('https://dummyjson.com/quotes?limit=100');
+//         const data = await res.json();
+//         allQuotes = assignCategories(data.quotes);
+//         renderCategoryButtons();
+//         renderQuotes(allQuotes);
+//       } catch (error) {
+//         document.getElementById('quotes-list').innerHTML = '<li>Failed to load quotes. Please try again later.</li>';
+//         console.error('Error fetching quotes:', error);
+//       }
+//     }
+
+//     document.addEventListener('DOMContentLoaded', () => {
+//       fetchQuotes();
+//       document.getElementById('btn-save-reflection').addEventListener('click', saveReflection);
+//     });
