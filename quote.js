@@ -1,8 +1,7 @@
 
+
 const quotesContainer=document.getElementById("quotes-container");
-
 const getQuotes=async ()=>{
-
     try{
         const response=await fetch("https://dummyjson.com/quotes?limit=20",{
             method:"GET",
@@ -71,31 +70,4 @@ searchInput.addEventListener('keyup', () => {
   });
 });
 
-// let currentIndex = 0;
-// const batchSize = 8;
 
-// const quoteList = document.getElementById('quotes-container');
-// const readMoreBtn = document.getElementById('read-more');
-
-// function displayQuotes() {
-//   const nextBatch = quotesDaily.slice(currentIndex, currentIndex + batchSize);
-
-//   nextBatch.forEach(quote => {
-//     const li = document.createElement('li');
-//     li.className = 'quote-item';
-//     li.innerHTML = `
-//       <p>${item.quote}</p>
-//       <p><em>${item.author ? item.author : 'Unknown'}</em></p>
-//     `;
-//     quoteList.appendChild(li);
-//   });
-
-//   currentIndex += batchSize;
-
-//   if (currentIndex >= quotesDaily.length) {
-//     readMoreBtn.style.display = 'none';
-//   }
-// }
-// readMoreBtn.addEventListener('click', () => {
-//   displayQuotes();
-// });
