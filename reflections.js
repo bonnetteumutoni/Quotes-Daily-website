@@ -24,6 +24,14 @@
       });
 
       document.querySelectorAll('.btn-remove').forEach(btn => {
+        btn.style.backgroundColor="rgb(190, 36, 12)";
+        btn.style.width="80%";
+        btn.style.padding="10px";
+        btn.style.borderRadius="10px";
+        btn.style.color="white";
+        btn.style.border="none";
+        btn.style.marginTop="30px";
+        btn.style.marginBottom="30px";
         btn.addEventListener('click', e => {
           const idx = e.target.getAttribute('data-index');
           reflections.splice(idx, 1);

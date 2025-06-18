@@ -31,6 +31,7 @@
         btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
         btn.className = 'category-btn';
         btn.dataset.category = cat;
+        // btn.style.backgroundColor = darkorange;
         container.appendChild(btn);
       });
 
@@ -155,3 +156,26 @@
       fetchQuotes();
       document.getElementById('btn-save-reflection').addEventListener('click', saveReflection);
     });
+    const modal = document.getElementById("modal");
+const closeBtn = document.getElementById("close-btn");
+const modalQuote = document.getElementById("modal-quote");
+
+function quoteOfTheDay() {
+    const quotes = [
+        "Sunday Quote: The only way to do great work is to love what you do. - Steve Jobs",
+        "Monday Quote: Life is what happens when you're busy making other plans. - John Lennon",
+        "Tuesday Quote: In the middle of every difficulty lies opportunity. - Albert Einstein",
+        "Wednesday Quote: The only limit to our realization of tomorrow is our doubts of today. - Franklin D. Roosevelt",
+        "Thursday Quote: Do not watch the clock. Do what it does. Keep going. - Sam Levenson",
+        "Friday Quote: The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+        "Saturday Quote: The best way to predict the future is to invent it. - Alan Kay"
+    ];
+     const dayOfWeek = new Date().getDay();
+  modalQuote.textContent = quotes[dayOfWeek];
+  modal.style.display = "flex";
+}
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("load", quoteOfTheDay);
