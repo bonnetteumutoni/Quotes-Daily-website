@@ -23,12 +23,12 @@
       });
 
       document.querySelectorAll('.btn-remove').forEach(btn => {
-        btn.style.backgroundColor="#535115";
-        btn.style.width="30%";
+        btn.style.backgroundColor="rgb(190, 36, 12)";
+        btn.style.width="20%";
         btn.style.padding="10px";
         btn.style.borderRadius="10px";
         btn.style.color="white";
-        btn.style.border="none"
+        btn.style.border="none";
         btn.addEventListener('click', e => {
           const idx = e.target.getAttribute('data-index');
           favorites.splice(idx, 1);
