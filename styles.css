@@ -12,7 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: #f0f6fb;
+  background: #dbe4ec;
   line-height: 1.6;
 }
 
@@ -75,6 +75,9 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  h1{
+    color: #1a3e72;
+  }
 }
 
 .reflection-section h2 {
@@ -213,7 +216,9 @@ main {
   font-weight: 700;
   margin-bottom: 0.75rem;
 }
-
+.favorites-section h1{
+  color: #1a3e72;
+}
 
 .category-buttons {
   display: flex;
@@ -391,6 +396,12 @@ footer {
     max-height: none;
     margin-bottom: 2rem;
     flex: none;
+    p{
+      color: #1a3e72;
+    }
+  }
+  .reflection-section h1{
+    color: #061c46;
   }
 
   #quotes-list {
