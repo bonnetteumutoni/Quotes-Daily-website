@@ -161,10 +161,10 @@ const modalQuote = document.getElementById("modal-quote");
 
 function quoteOfTheDay() {
     const quotes = [
-        "Sunday Quote: The only way to do great work is to love what you do. - Steve Jobs",
+        "Sunday Quote: The only way to do great work is to love what you do. - Steve Jobs Tag:inspiration",
         "Monday Quote: Life is what happens when you're busy making other plans. - John Lennon",
         "Tuesday Quote: In the middle of every difficulty lies opportunity. - Albert Einstein",
-        "Wednesday Quote: The only limit to our realization of tomorrow is our doubts of today. - Franklin D. Roosevelt",
+        "Wednesday Quote: The only limit to our realization of tomorrow is our doubts of today. - Franklin D. Roosevelt ",
         "Thursday Quote: Do not watch the clock. Do what it does. Keep going. - Sam Levenson",
         "Friday Quote: The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
         "Saturday Quote: The best way to predict the future is to invent it. - Alan Kay"
