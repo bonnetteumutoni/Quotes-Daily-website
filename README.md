@@ -16,7 +16,7 @@ API<br>
 
 **Hosted Link**<br>
 ---
-QuotesHub-website[https://quoteshubweb.netlify.app/]
+[QuotesHub-Website],(https://quoteshubweb.netlify.app/reflections)
 
 
 
