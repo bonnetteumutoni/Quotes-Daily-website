@@ -1,19 +1,20 @@
+Quotes website that shows different quotes and authors:<br>
 
 **Features**
 ---
 . Filtration by categories<br>
 . Quote of the day<br>
 . Reflection page<br>
-. Favorite page
+. Favorite page<br>
 
-**Languages used**
+**Languages used**<br>
 ---
-JavaScript
-CSS
-HTML
-API
+JavaScript<br>
+CSS<br>
+HTML<br>
+API<br>
 
-**Hosted Link**
+**Hosted Link**<br>
 ---
 QuotesHub-website[https://quoteshubweb.netlify.app/]
 
