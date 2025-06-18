@@ -31,7 +31,6 @@
         btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
         btn.className = 'category-btn';
         btn.dataset.category = cat;
-        // btn.style.backgroundColor = darkorange;
         container.appendChild(btn);
       });
 
