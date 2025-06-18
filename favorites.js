@@ -22,6 +22,8 @@
         favoritesList.appendChild(li);
       });
 
+      
+
       document.querySelectorAll('.btn-remove').forEach(btn => {
         btn.style.backgroundColor="rgb(19, 37, 48)";
         btn.style.width="20%";
