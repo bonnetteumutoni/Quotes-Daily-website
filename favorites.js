@@ -23,7 +23,7 @@
       });
 
       document.querySelectorAll('.btn-remove').forEach(btn => {
-        btn.style.backgroundColor="rgb(128, 66, 128)";
+        btn.style.backgroundColor="rgb(19, 37, 48)";
         btn.style.width="20%";
         btn.style.padding="10px";
         btn.style.borderRadius="30px";
