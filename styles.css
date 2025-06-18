@@ -11,13 +11,13 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: #ead5ee;
+  background: #d7eceb;
   line-height: 1.6;
 }
 
 
 header {
-  background: #6c5b7b; 
+  background: #0d0118; 
   padding: 1.5rem 2.5rem;
   box-shadow: 0 3px 8px rgba(108, 91, 123, 0.3);
 }
@@ -325,7 +325,7 @@ blockquote {
 
 .btn-favorite {
   align-self: flex-end;
-  background: #d94f70;
+  background: #0d0118;
   border: none;
   color: white;
   padding: 0.5rem 1rem;
@@ -349,7 +349,7 @@ blockquote {
 }
 
 .pagination button {
-  background: #d94f70;
+  background: #0d0118;
   border: none;
   color: white;
   padding: 0.6rem 1.3rem;
@@ -376,7 +376,7 @@ blockquote {
 
 
 footer {
-  background: #6c5b7b;
+  background: #0d0118;
   text-align: center;
   padding: 1rem 2rem;
   font-size: 0.9rem;
