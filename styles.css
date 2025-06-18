@@ -1,4 +1,4 @@
-/* Reset and base */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,8 +15,8 @@ body {
 }
 
 header {
-  background: #2c3e50;
-  padding: 1rem 2rem;
+  background: #082238;
+  padding: 1.5rem 2.5rem;
 }
 
 .nav-list {
@@ -37,7 +37,7 @@ header {
 
 .nav-list a:hover,
 .nav-list a.active {
-  background: #2980b9;
+  background: #535115;
 }
 
 main {
@@ -50,19 +50,21 @@ main {
 
 h1, h2 {
   margin-bottom: 1rem;
-  color: #2c3e50;
+  color: #082238;
 }
 
 footer {
-  background: #2c3e50;
-  color: #bdc3c7;
+  background: #082238;
   text-align: center;
   padding: 1rem 2rem;
   font-size: 0.9rem;
   margin-top: auto;
+  p{
+    color: white;
+  }
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 600px) {
   main {
     padding: 1rem;
@@ -78,3 +80,201 @@ footer {
   }
 }
 
+    main {
+      display: flex;
+      max-width: 1000px;
+      margin: 0rem auto;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+
+    .reflection-section {
+      position: sticky;
+      top: 2rem;
+      flex: 0 0 300px;
+      background: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      height: fit-content;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+   
+    .quotes-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+  
+    .category-filter {
+      margin-bottom: 1rem;
+    }
+
+ 
+    #quotes-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      padding: 0;
+      list-style: none;
+    }
+
+   
+    .quote-item {
+      background: white;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 150px;
+    }
+
+    blockquote {
+      font-size: 1rem;
+      font-style: italic;
+      color: #34495e;
+      border-left: 4px solid #2980b9;
+      padding-left: 0.75rem;
+      margin-bottom: 0.5rem;
+      flex-grow: 1;
+    }
+
+    .quote-item p.author {
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 0.5rem;
+      text-align: right;
+    }
+
+    .tags {
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #d1e7ff;
+      color: #2980b9;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      margin-right: 0.3rem;
+      font-weight: 600;
+    }
+
+    .btn-favorite {
+      align-self: flex-end;
+      background: #2980b9;
+      border: none;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .btn-favorite:hover {
+      background: #1c5980;
+    }
+
+    /* Pagination controls */
+    .pagination {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .pagination button {
+      background: #2980b9;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .pagination button:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .pagination button:hover:not(:disabled) {
+      background: #1c5980;
+    }
+
+    /* Category buttons */
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .category-btn {
+      background: #2980b9;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: #1c5980;
+    }
+
+    /* Reflection textarea */
+    #reflection-input {
+      width: 100%;
+      min-height: 150px;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      font-family: inherit;
+      margin-bottom: 1rem;
+    }
+
+    #btn-save-reflection {
+      width: 100%;
+      padding: 0.6rem;
+    }
+
+    .message {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      main {
+        flex-direction: column;
+        max-width: 100%;
+        margin: 1rem;
+        padding: 0 1rem;
+      }
+
+      .reflection-section {
+        position: static;
+        max-height: none;
+        margin-bottom: 2rem;
+        flex: none;
+      }
+
+      #quotes-list {
+        grid-template-columns: 1fr;
+      }
+    }

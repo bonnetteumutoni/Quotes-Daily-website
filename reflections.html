@@ -5,63 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QuotesHub - Reflections</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    main {
-      max-width: 700px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .reflection-list {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .reflection-item {
-      background: white;
-      padding: 1rem 1.25rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-      margin-bottom: 1rem;
-      position: relative;
-    }
-
-    .reflection-item p {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-      color: #34495e;
-    }
-
-    .reflection-item small {
-      color: #777;
-      font-size: 0.85rem;
-    }
-
-    .btn-remove {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: #e74c3c;
-      border: none;
-      color: white;
-      padding: 0.3rem 0.6rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: background 0.3s ease;
-    }
-
-    .btn-remove:hover {
-      background: #c0392b;
-    }
-
-    .message {
-      font-weight: 600;
-      text-align: center;
-      margin-top: 2rem;
-      color: #555;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -86,45 +29,6 @@
     <p>© 2025 QuotesHub. All rights reserved.</p>
   </footer>
 
-  <script>
-    function renderReflections() {
-      const reflectionsList = document.getElementById('reflections-list');
-      const noRefMsg = document.getElementById('no-reflections-msg');
-      let reflections = JSON.parse(localStorage.getItem('reflections')) || [];
-      reflectionsList.innerHTML = '';
-
-      if (reflections.length === 0) {
-        noRefMsg.style.display = 'block';
-        return;
-      } else {
-        noRefMsg.style.display = 'none';
-      }
-
-      reflections.forEach((reflection, index) => {
-        const li = document.createElement('li');
-        li.className = 'reflection-item';
-        const date = new Date(reflection.date).toLocaleString();
-        li.innerHTML = `
-          <p>${reflection.text}</p>
-          <small>Saved on: ${date}</small>
-          <button class="btn-remove" data-index="${index}">Remove</button>
-        `;
-        reflectionsList.appendChild(li);
-      });
-
-      document.querySelectorAll('.btn-remove').forEach(btn => {
-        btn.addEventListener('click', e => {
-          const idx = e.target.getAttribute('data-index');
-          reflections.splice(idx, 1);
-          localStorage.setItem('reflections', JSON.stringify(reflections));
-          renderReflections();
-        });
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      renderReflections();
-    });
-  </script>
+  <script src="reflections.js"> </script>
 </body>
 </html>
