@@ -1,9 +1,9 @@
 
 **Features**
 ---
-. Filtration by categories
-. Quote of the day
-. Reflection page
+. Filtration by categories<br>
+. Quote of the day<br>
+. Reflection page<br>
 . Favorite page
 
 **Languages used**
